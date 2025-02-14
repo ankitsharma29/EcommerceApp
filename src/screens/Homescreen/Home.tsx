@@ -15,27 +15,33 @@ import Colors from "../../resource/theme/color";
 import Mixins from "../../resource/mixins/appStyle";
 import Fonts from "../../resource/theme/font";
 import CustomButton from "../../Components/CustomButton";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
+import { fetchProductDetails } from "../../store/slice/ProductData/ProductDataSlice";
 const { scaleSize, scaleFont } = Mixins;
 
 const Home = ({ navigation }: any) => {
-  const { width } = Dimensions.get("window");
+  const ProductDetailsData = useAppSelector(state => state.ProductData.ProductDataResponse);  
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState<any[]>([]); // Cart state
   const [loading, setLoading] = useState<boolean>(true);
+  const dispatch = useAppDispatch();
+  const ProductDetails = async () => {
+    setLoading(true);
+    dispatch(fetchProductDetails())
+      .unwrap()
+      .then((response: any) => {
+        // console.log("res", response);
+        setProducts(response);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log("err", err);
+        setLoading(false);
+      });
+  };
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch("https://fakestoreapi.com/products");
-        const data = await response.json();
-        setProducts(data);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchProducts();
+    ProductDetails();
   }, []);
 
   const addToCart = (item: any) => {
@@ -58,16 +64,20 @@ const Home = ({ navigation }: any) => {
       </Text>
       <Text style={styles.price}>₹{item.price.toFixed(2)}</Text>
       <Text style={styles.rating}>Rating: {item.rating.rate} ⭐</Text>
-      <View style={{justifyContent:'center',alignItems:'center'}}>
-
-      <CustomButton
-        ColorCodes={[Colors.blue1(), Colors.blue1()]}
-        title="Add to Cart"
-        style={{marginTop:scaleSize(10),height:scaleSize(45),width: scaleSize(120),alignItems:'center'}}
-        onPress={() => {
-          addToCart(item);
-        }}
-      />
+      <View style={{ justifyContent: "center", alignItems: "center" }}>
+        <CustomButton
+          ColorCodes={[Colors.blue1(), Colors.blue1()]}
+          title="Add to Cart"
+          style={{
+            marginTop: scaleSize(10),
+            height: scaleSize(45),
+            width: scaleSize(120),
+            alignItems: "center",
+          }}
+          onPress={() => {
+            addToCart(item);
+          }}
+        />
       </View>
     </TouchableOpacity>
   );

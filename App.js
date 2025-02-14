@@ -1,25 +1,17 @@
-import { React, useEffect } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { StatusBar, TouchableOpacity } from 'react-native';
-import SplashScreenA from 'react-native-splash-screen'
-import NavigationStack from './src/stack/NavigationStack';
-
+import { React, useEffect } from "react";
+import SplashScreenA from "react-native-splash-screen";
+import { Provider } from "react-redux";
+import SafeAreaComponent from "./src/screens/SafeAreaComponent";
+import store from "./src/store/store";
 const App = () => {
   useEffect(() => {
     SplashScreenA.hide();
-  }, [])
-
+  }, []);
 
   return (
-    <NavigationContainer>
-      <StatusBar
-        backgroundColor={'white'}
-        barStyle={'dark-content'}
-        translucent={false}
-      />
-      <NavigationStack />
-    </NavigationContainer>
+    <Provider store={store}>
+      <SafeAreaComponent edges={["top", "right", "left"]} />
+    </Provider>
   );
 };
 

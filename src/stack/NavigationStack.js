@@ -3,6 +3,7 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SplashScreen from '../screens/splash';
 import HomeScreen from '../screens/Homescreen/Home';
+import ProductDetailsScreen from '../screens/ProductDetails/ProductDetailsScreen';
 const Stack = createNativeStackNavigator();
 const stackScreenOptions = {
   headerShown: false,
@@ -35,6 +36,10 @@ const NavigationStack = () => {
       <Stack.Screen
         name="Home"
         component={HomeScreen}
+      />
+      <Stack.Screen
+        name="ProductDetails"
+        component={ProductDetailsScreen}
       />
     </Stack.Navigator>
   );

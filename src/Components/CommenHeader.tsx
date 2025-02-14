@@ -17,11 +17,11 @@ interface Props {
   backIconDisabled?: boolean;
 }
 
-const CommenHeader = ({ onPress, title, backIconDisabled }: any) => {
+const CommenHeader = ({ onPress, title, backIconDisabled = true }: any) => {
   return (
     <View style={styles.headerContainer}>
       <View style={styles.mainContainer}>
-        <TouchableOpacity onPress={onPress} disabled={backIconDisabled}>
+        <TouchableOpacity onPress={onPress} disabled={!backIconDisabled}>
           <View style={styles.leftContainer}>
             {backIconDisabled == true && (
               <Feather name="chevron-left" size={20} color={"black"} />

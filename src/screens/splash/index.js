@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {StatusBar} from 'react-native';
-import SlideInText from '../../Components/SlideInText';
 import Colors from '../../resource/theme/color';
 
 const SplashScreen = ({navigation}) => {

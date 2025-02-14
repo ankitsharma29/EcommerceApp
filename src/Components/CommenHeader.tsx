@@ -12,12 +12,20 @@ import Colors from "../resource/theme/color";
 interface Props {
   title?: string;
   onPress?: any;
+  CartPress?: any;
   helpDisable?: boolean;
   navigation?: any;
   backIconDisabled?: boolean;
+  cardShow?: boolean;
 }
 
-const CommenHeader = ({ onPress, title, backIconDisabled = true }: any) => {
+const CommenHeader = ({
+  onPress,
+  title,
+  backIconDisabled = true,
+  CartPress,
+  cardShow = false,
+}: any) => {
   return (
     <View style={styles.headerContainer}>
       <View style={styles.mainContainer}>
@@ -29,6 +37,13 @@ const CommenHeader = ({ onPress, title, backIconDisabled = true }: any) => {
             <Text style={styles.textStyle}>{title}</Text>
           </View>
         </TouchableOpacity>
+        {cardShow == true && (
+          <TouchableOpacity onPress={CartPress}>
+            <View style={styles.rightContainer}>
+              <Feather name="shopping-cart" size={20} color={"black"} />
+            </View>
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );
@@ -59,15 +74,10 @@ const styles = StyleSheet.create({
     marginStart: 8,
   },
   rightContainer: {
-    marginEnd: "5%",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    borderColor: "black",
-    borderWidth: 0.5,
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 5,
+    marginEnd: 10,
   },
   textStyle: {
     textAlign: "center",

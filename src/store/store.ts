@@ -1,5 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import ProductDataSlice from "./slice/ProductData/ProductDataSlice";
+import cartItemsSlice from "./slice/ProductData/cartItemsSlice";
+
 
 const store = configureStore({
   middleware: (getDefaultMiddleware) =>
@@ -8,6 +10,7 @@ const store = configureStore({
     }),
   reducer: {
     ProductData: ProductDataSlice,
+    cartItems: cartItemsSlice,
   },
 });
 

@@ -17,10 +17,16 @@ import Fonts from "../../resource/theme/font";
 import CustomButton from "../../Components/CustomButton";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
 import { fetchProductDetails } from "../../store/slice/ProductData/ProductDataSlice";
+import { addItemToCart } from "../../store/slice/ProductData/cartItemsSlice";
 const { scaleSize, scaleFont } = Mixins;
 
 const Home = ({ navigation }: any) => {
-  const ProductDetailsData = useAppSelector(state => state.ProductData.ProductDataResponse);  
+  const ProductDetailsData = useAppSelector(
+    (state) => state.ProductData.ProductDataResponse
+  );
+  const cartItems = useAppSelector((state) => state.cartItems.cartItems);
+  console.log("cartItems", cartItems);
+
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState<any[]>([]); // Cart state
   const [loading, setLoading] = useState<boolean>(true);
@@ -45,8 +51,9 @@ const Home = ({ navigation }: any) => {
   }, []);
 
   const addToCart = (item: any) => {
-    setCart((prevCart) => [...prevCart, item]);
-    Alert.alert("Success", `${item.title} has been added to the cart.`);
+    dispatch(addItemToCart(item));
+    // setCart((prevCart) => [...prevCart, item]);
+    // Alert.alert("Success", `${item.title} has been added to the cart.`);
   };
 
   const renderItem = ({ item }: any) => (
@@ -92,7 +99,14 @@ const Home = ({ navigation }: any) => {
 
   return (
     <View style={styles.container}>
-      <CommenHeader title={"Product Page"} backIconDisabled={false} />
+      <CommenHeader
+        title={"Product Page"}
+        backIconDisabled={false}
+        cardShow={true}
+        CartPress={() => {
+          navigation.navigate("CartPageScreen");
+        }}
+      />
       <FlatList
         data={products}
         style={{ margin: scaleSize(10) }}
@@ -110,6 +124,7 @@ export default Home;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor:Colors.white()
   },
   resultCard: {
     flex: 1,
@@ -146,7 +161,6 @@ const styles = StyleSheet.create({
   },
   cartSummary: {
     padding: scaleSize(15),
-    backgroundColor: Colors.lightWhite(),
   },
   cartText: {
     fontSize: scaleFont(18),

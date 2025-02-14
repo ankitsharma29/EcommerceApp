@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SplashScreen from '../screens/splash';
 import HomeScreen from '../screens/Homescreen/Home';
 import ProductDetailsScreen from '../screens/ProductDetails/ProductDetailsScreen';
+import CartPageScreen from '../screens/CartPageScreen/CartPageScreen';
 const Stack = createNativeStackNavigator();
 const stackScreenOptions = {
   headerShown: false,
@@ -40,6 +41,10 @@ const NavigationStack = () => {
       <Stack.Screen
         name="ProductDetails"
         component={ProductDetailsScreen}
+      />
+      <Stack.Screen
+        name="CartPageScreen"
+        component={CartPageScreen}
       />
     </Stack.Navigator>
   );

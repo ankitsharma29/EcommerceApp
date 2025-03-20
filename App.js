@@ -1,8 +1,10 @@
+import "./global.css";
 import { React, useEffect } from "react";
 import SplashScreenA from "react-native-splash-screen";
 import { Provider } from "react-redux";
 import SafeAreaComponent from "./src/screens/SafeAreaComponent";
 import store from "./src/store/store";
+import { Text, View } from "react-native";
 const App = () => {
   useEffect(() => {
     SplashScreenA.hide();
@@ -10,7 +12,10 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <SafeAreaComponent edges={["top", "right", "left"]} />
+      <View className="text-red-500">
+        <Text>Hello, World!</Text>
+      </View>
+      {/* <SafeAreaComponent edges={["top", "right", "left"]} /> */}
     </Provider>
   );
 };

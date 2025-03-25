@@ -1,6 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import ProductDataSlice from "./slice/ProductData/ProductDataSlice";
-import cartItemsSlice from "./slice/ProductData/cartItemsSlice";
+import cartItemsSlice from "./slice/ProductData/ProductDataSlice";
+import userReducer from "./slice/TodoData/todoSlice";
+import userSlice from "./slice/TodoData/userSlice";
 
 
 const store = configureStore({
@@ -11,6 +13,8 @@ const store = configureStore({
   reducer: {
     ProductData: ProductDataSlice,
     cartItems: cartItemsSlice,
+    user: userReducer,
+    todo: userSlice,
   },
 });
 

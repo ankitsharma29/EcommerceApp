@@ -5,6 +5,7 @@ import SplashScreen from '../screens/splash';
 import HomeScreen from '../screens/Homescreen/Home';
 import ProductDetailsScreen from '../screens/ProductDetails/ProductDetailsScreen';
 import CartPageScreen from '../screens/CartPageScreen/CartPageScreen';
+import TodoApp from '../screens/TodoApp/TodoApp';
 const Stack = createNativeStackNavigator();
 const stackScreenOptions = {
   headerShown: false,
@@ -45,6 +46,10 @@ const NavigationStack = () => {
       <Stack.Screen
         name="CartPageScreen"
         component={CartPageScreen}
+      />
+      <Stack.Screen
+        name="TodoApp"
+        component={TodoApp}
       />
     </Stack.Navigator>
   );

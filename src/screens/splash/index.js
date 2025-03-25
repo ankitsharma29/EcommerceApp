@@ -7,7 +7,7 @@ import Colors from '../../resource/theme/color';
 const SplashScreen = ({navigation}) => {
   useEffect(() => {
     setTimeout(() => {
-      navigation.replace('Home');
+      navigation.replace('TodoApp');
     }, 2000);
   });
   return (

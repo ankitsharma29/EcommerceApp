@@ -12,8 +12,8 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <View className="text-red-500">
-        <Text>Hello, World!</Text>
+      <View className="bg-red-800">
+        <Text className="text-blue-200 text-center font-semibold">Hello, World!</Text>
       </View>
       {/* <SafeAreaComponent edges={["top", "right", "left"]} /> */}
     </Provider>
